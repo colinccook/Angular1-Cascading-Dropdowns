@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+</head>
+
+<body>
+
+	<div ng-app="myApp" ng-controller="myCtrl">
+	
+		<div ng-repeat="x in owners">
+			<p>{{x.name}}</p>
+			<p><small>{{x.car}}</small></p>
+			<select ng-model="x.car" ng-options="c.model for c in cars track by c.id">
+			</select>
+			<select ng-model="x.car.color" ng-options="o as o for o in colors">
+			</select>
+			<select ng-model="x.car.engine" ng-options="e.name for e in x.car.availableEngines track by e.id">
+			</select>
+			<hr>
+		</div>
+		
+	</div>
+
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('myCtrl', function($scope) {
+			$scope.names = ["Emil", "Tobias", "Linus"];
+			
+			$scope.owners = [
+				{id : 1, name : "Colin Cook", car: 
+					{id : 1, model : "Ford Mustang", color : "red", engine: {id : 1, name : "4L Petrol Engine"}, availableEngines: 
+						[
+							{id : 1, name : "4L Petrol Engine"},
+							{id : 2, name : "5L Petrol Engine"},
+							{id : 3, name : "6L Petrol Engine"}
+						]
+					}
+				},
+				{id : 2, name : "Jimmy Black", car: 
+					{id : 2, model : "Fiat 500", color : "white", engine: {id : 1, name : "1000cc Petrol Engine"}, availableEngines: 
+						[
+							{id : 1, name : "500cc Petrol Engine"},
+							{id : 2, name : "1000cc Petrol Engine"}
+						]
+					}
+				},
+				{id : 3, name : "Michael Smith", car: 
+					{id : 2, model : "Fiat 500", color : "white", engine: {id : 1, name : "500cc Petrol Engine"}, availableEngines: 
+						[
+							{id : 1, name : "500cc Petrol Engine"},
+							{id : 2, name : "1000cc Petrol Engine"}
+						]
+					}
+				},
+				{id : 4, name : "Joseph Thompson", car: 
+					{id : 3, model : "Volvo XC90", color : "black", engine: {id : 1, name : "2L Diesel Engine"}, availableEngines: 
+						[
+							{id : 1, name : "1L Diesel Engine"},
+							{id : 2, name : "2L Diesel Engine"},
+							{id : 3, name : "Electric Engine"},
+						]
+					}
+				},
+				{id : 5, name : "Bob Smith", car: 
+					{id : 1, model : "Ford Mustang", color : "red", engine: {id : 1, name : "6L Petrol Engine"}, availableEngines: 
+						[
+							{id : 1, name : "4L Petrol Engine"},
+							{id : 2, name : "5L Petrol Engine"},
+							{id : 3, name : "6L Petrol Engine"}
+						]
+					}
+				},
+				{id : 6, name : "Robert Smith"},
+			];
+			
+			$scope.cars = [
+				{id : 1, model : "Ford Mustang", color : "red", availableEngines: 
+					[
+						{id : 1, name : "4L Petrol Engine"},
+						{id : 2, name : "5L Petrol Engine"},
+						{id : 3, name : "6L Petrol Engine"}
+					]
+				},
+				{id : 2, model : "Fiat 500", color : "white", availableEngines: 
+					[
+						{id : 1, name : "500cc Petrol Engine"},
+						{id : 2, name : "1000cc Petrol Engine"}
+					]
+				},
+				{id : 3, model : "Volvo XC90", color : "black", availableEngines: 
+					[
+						{id : 1, name : "1L Diesel Engine"},
+						{id : 2, name : "2L Diesel Engine"},
+						{id : 3, name : "Electric Engine"},
+					]
+				}
+			];
+
+			$scope.colors = [
+				"red", "white", "black", "blue", "green"
+			]
+		});
+	</script>
+
+	</body>
+
+</html>
